@@ -29,19 +29,63 @@ Use these gestures:
 
 🖐️ Open Palm → Accelerate (Right Arrow)
 
+![Img1](https://github.com/SakshiBiyani02/GestureDrive-Hand_Controlled_Hill_Climb_Racing_Game/blob/main/Screenshot%202025-07-11%20230728.png?raw=true)
+
 ✊ Fist → Brake (Left Arrow)
+
+![Img2](https://github.com/SakshiBiyani02/GestureDrive-Hand_Controlled_Hill_Climb_Racing_Game/blob/main/Screenshot%202025-07-11%20230747.png?raw=true)
 
 🤚 Other Gestures / No Hand → Neutral (No key press)
 
+![Img3](https://github.com/SakshiBiyani02/GestureDrive-Hand_Controlled_Hill_Climb_Racing_Game/blob/main/Screenshot%202025-07-11%20230846.png?raw=true)
+
 Open the Hill Climb Racing game window and enjoy gesture-based control!
 
-## How It Works
-The webcam feed is processed with MediaPipe to detect 21 hand landmarks.
+![game](https://github.com/SakshiBiyani02/GestureDrive-Hand_Controlled_Hill_Climb_Racing_Game/blob/main/Screenshot%202025-07-11%20231236.png?raw=true)
 
-A function checks if fingers (excluding thumb) are up by comparing the y-coordinates of fingertip and PIP joints.
-Depending on the number of raised fingers:
-4 fingers up = Open Palm → Accelerate
-0 fingers up = Fist → Brake
-Any other count = Neutral
-Keyboard inputs are simulated using PyAutoGUI.
+## How It Works
+This project uses hand gesture recognition to simulate keyboard inputs for controlling applications (e.g., games). Here's how it works step by step:
+
+🖐️ 1. Hand Landmark Detection (MediaPipe)
+- Uses MediaPipe Hands to process the webcam feed in real-time.
+
+- Detects 21 hand landmarks, including fingertips, finger joints, and the wrist.
+
+Provides precise tracking of hand position and finger orientation.
+
+✋ 2. Finger State Detection
+A function determines whether each finger (excluding the thumb) is up or down.
+
+For each finger:
+
+- Compares the y-coordinate of the fingertip with its corresponding PIP joint.
+
+- If the fingertip is higher (i.e., lower y-value on screen), the finger is considered up.
+
+3. Gesture-to-Action Mapping
+   
+The number of raised fingers is used to trigger specific actions:
+
+4 fingers up → Open Palm
+
+🟢 Action: Accelerate (simulate pressing "w")
+
+0 fingers up → Fist
+
+🔴 Action: Brake (simulate pressing "s")
+
+1–3 fingers up → Any other gesture
+
+⚪ Action: Neutral (no input sent)
+
+4. Keyboard Simulation (PyAutoGUI)
+- Uses PyAutoGUI to simulate keyboard input based on the recognized gesture.
+
+- Automatically presses or releases keys depending on the current hand pose.
+
+- Enables touchless control for games, robotics, or other interactive applications.
+
+## Conclusion
+This project demonstrates a simple yet powerful way to control applications using hand gestures and computer vision. By combining MediaPipe for hand tracking with PyAutoGUI for keyboard automation, it offers an intuitive, touch-free interface that can be extended to games, robotics, and accessibility tools. Customize the gesture mappings and actions to suit your own creative use cases!
+
 
